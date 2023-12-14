@@ -1,0 +1,6 @@
+<h1>kzkioさんのプロフィール</h1>
+<ul>
+  <% profile.each do |key, value| %>
+    <li><a href="/details/<%= key %>"><%= key %>: <%= value %></a></li>
+  <% end %>
+</ul>
