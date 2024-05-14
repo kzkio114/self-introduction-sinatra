@@ -4,15 +4,15 @@ require 'erb'
 class App < Sinatra::Base
   @@profile = {
     "ニックネーム" => "kzkio(かずちゃん)",
-    "年齢" => "31歳",
-    "趣味" => "爬虫類飼育など",
+    "年齢" => "32歳",
+    "趣味" => "爬虫類飼育・ゲーム(フロム系)",
     "出身地" => "埼玉県"
   }
 
   @@additional_questions_and_answers = {
     "ニックネーム" => {
       "question" => "なぜニックネームをkzkio(かずちゃん)にしたか聞きたいですか？(はい/いいえ)",
-      "answer" => "自分の名前が、よくある名前なので下の名前+苗字をローマ字で書いて1文字抜いて誰も被らないようにしてみました。読みづらいのでkzて呼んでもいいですよ!・・・それも、読みづらいので交流会で新しいニックネームを授かりました！！かずちゃんです！！"
+      "answer" => "自分の名前が、よくある名前なので下の名前+苗字をローマ字で書いて1文字抜いて誰も被らないようにしてみました。読みづらいので交流会で新しいニックネームを授かりました！！かずちゃんです！！"
     },
     "年齢" => {
       "question" => "具体的な生年月日も知りたいですか？(はい/いいえ)",
@@ -84,47 +84,3 @@ class App < Sinatra::Base
 end
 
 __END__
-
-@@index
-<h1>kzkio(かずちゃん)のプロフィール</h1>
-<ul>
-  <% profile.each do |key, value| %>
-    <li><a href="/details/<%= key %>"><%= key %>: <%= value %></a></li>
-  <% end %>
-</ul>
-
-@@details
-<h1><%= item %>について</h1>
-<form method="post" action="/details/<%= item %>">
-  <p><%= question %></p>
-  <input type="radio" id="yes" name="user_answer" value="はい">
-  <label for="yes">はい</label><br>
-  <input type="radio" id="no" name="user_answer" value="いいえ">
-  <label for="no">いいえ</label><br>
-  <input type="submit" value="送信">
-</form>
-<br>
-<a href="/">戻る</a>
-
-@@reptiles
-<h1>どちらについて知りたいですか？</h1>
-<ul>
-  <% reptile_details.keys.each do |reptile| %>
-    <li><a href="/reptile/<%= reptile %>"><%= reptile %></a></li>
-  <% end %>
-</ul>
-<br>
-<a href="/">戻る</a>
-
-@@answer
-<h1><%= item %>についての追加情報</h1>
-<p><%= answer %></p>
-<br>
-<a href="/">戻る</a>
-
-@@reptile
-<h1><%= name %>について</h1>
-<p><%= description %></p>
-<p>画像はこちら: <a href="<%= image %>" target="_blank">リンク</a></p>
-<br>
-<a href="/details/趣味">戻る</a>
